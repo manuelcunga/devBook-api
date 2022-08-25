@@ -1,6 +1,7 @@
 package main
 
 import (
+	"book-api/src/config"
 	"book-api/src/router"
 	"fmt"
 	"log"
@@ -8,9 +9,11 @@ import (
 )
 
 func main() {
-	fmt.Println("Bem vindo jovem")
+	config.Loading()
+	fmt.Sprintf(config.ConnectionStringDb)
+	fmt.Println("server running...")
 
 	app := router.Gerar()
-	log.Fatal(http.ListenAndServe(":4000", app))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", config.Port), app))
 
 }
